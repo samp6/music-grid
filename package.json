@@ -4,11 +4,13 @@
   "private": true,
   "dependencies": {
     "@types/react": "^16.9.1",
+    "@types/react-sound": "^1.2.1",
     "classnames": "^2.2.6",
     "primereact": "^3.1.8",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-scripts": "3.1.0",
+    "react-sound": "^1.2.0",
     "typescript": "^3.5.3"
   },
   "scripts": {

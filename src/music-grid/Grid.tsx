@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './Grid.css';
 import { RandomizeButton } from './RandomizeButton';
 
-import { Note, NoteProps } from './Note'
+import { Note } from './Note'
 
 interface GridProps { 
 
@@ -23,7 +23,7 @@ export const Grid: React.FC<GridProps> = () => {
 
     let boxes: JSX.Element[] = [];
     for(let index = 0; index < 16; index++) {
-        const noteProps: NoteProps = {index, value: noteArray[index], setNote};
+        const noteProps = {index, value: noteArray[index], setNote};
         const note = Note(noteProps);
         boxes.push(
             <div className='box'>
