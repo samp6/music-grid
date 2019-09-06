@@ -3,6 +3,7 @@ import './Grid.css';
 import { RandomizeButton } from './RandomizeButton';
 
 import { Note } from './Note'
+import { PlayManager } from './PlayManager';
 
 interface GridProps { 
 
@@ -47,6 +48,7 @@ export const Grid: React.FC<GridProps> = () => {
             <div className="p-grid">
                 {cols}
             </div>
+            <PlayManager notes={noteArray}/>
             <RandomizeButton setNoteArray={setNoteArray}/>
         </div>    
     );

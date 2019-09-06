@@ -13,3 +13,16 @@ export const getUrlFromValue = (val: number) => {
     const url = "notes\\" + name + "4.mp3";
     return url;
 }
+
+export const getNoteFromValue = (val: number) => {
+    const note: string = getNoteNameFromNumber(val) + "4";
+    return note;
+}
+
+export const getNoteArrayFromValueArray = (vals: number[]) => {
+    let notes: string[] = [];
+    vals.forEach((val: number) => {
+        notes.push(getNoteFromValue(val));
+    })
+    return notes;
+}
