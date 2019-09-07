@@ -3,18 +3,25 @@ import { Button } from 'primereact/button';
 import { getNoteArrayFromValueArray } from './NoteUtil';
 
 export const PlayManager = ({notes}) => {
-    
-    let synth;
-    require(["tone"], function(Tone) {
-        synth = new Tone.Synth().toMaster();
-    });
-
     const noteArray = getNoteArrayFromValueArray(notes);
 
+    const Tone = require('tone');
+    const synth = new Tone.Synth().toMaster();
+
+    const playNote = (time, note) => {
+        synth.triggerAttackRelease(note, '8n', time);
+    }
+
+    let seq = new Tone.Sequence(playNote, noteArray, "8n");
+
+    const playSequence = () => {
+        seq.start();
+        seq.stop(4);
+    }
+
     const play = () => {
-        for(let i = 0; i < 8; i++) {
-            synth.triggerAttackRelease(noteArray[i], '8n', i + 3);  
-        }        
+        Tone.Transport.start();
+        playSequence();     
     }
 
     return (
