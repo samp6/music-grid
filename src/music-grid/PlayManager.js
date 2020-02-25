@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from 'primereact/button';
 import { getNoteArrayFromValueArray } from './NoteUtil';
 
 export const PlayManager = ({notes}) => {
+    const [playing, setPlaying] = useState(false);
+
     const noteArray = getNoteArrayFromValueArray(notes);
 
     const Tone = require('tone');
@@ -15,16 +17,22 @@ export const PlayManager = ({notes}) => {
     let seq = new Tone.Sequence(playNote, noteArray, "8n");
 
     const playSequence = () => {
-        seq.start();
+        seq.start(0);
         seq.stop(4);
     }
 
-    const play = () => {
+    const togglePlay = () => {
+        setPlaying(!playing);
         Tone.Transport.start();
-        playSequence();     
+        playSequence();
+    }
+
+    const getPlayLabel = (playing) => {
+        var label = playing? "Stop" : "Play";
+        return label;
     }
 
     return (
-        <Button label='Play' onClick={play} />
+        <Button label={getPlayLabel(playing)} onClick={togglePlay} />
     );
 }
