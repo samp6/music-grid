@@ -2,7 +2,7 @@ import React from 'react';
 import { Button } from 'primereact/button';
 import { getNoteNameFromNumber } from './NoteUtil';
 
-export const Note = ({index, value, setNote}) => {
+export const Note = ({index, value, setNote, holdDisabled}) => {
 
     const clickHandlerPlus = () => {
         value++;
@@ -32,12 +32,15 @@ export const Note = ({index, value, setNote}) => {
         setNote(index, value);
     }
 
+    let holdButton = <Button label='h' onClick={clickHandlerHold} disabled={holdDisabled} />;
+
+
     return (        
         <div>
             <Button label='+' onClick={clickHandlerPlus}/>
             {getNoteNameFromNumber(value)}
             <Button label='-' onClick={clickHandlerMinus}/>
-            <Button label='h' onClick={clickHandlerHold}/>
+            {holdButton}
             <Button label='r' onClick={clickHandlerRest}/>           
         </div>
     );
