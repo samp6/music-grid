@@ -37,34 +37,12 @@ export const getNoteArrayFromValueArray = (vals: number[]) => {
 
 export const getNoteLengthArray = (notes: (string | null)[]) => {
     let noteLengthArray: string[] = [];
-    for(let i: number = 0; i < notes.length; i++) {
-        if(!((notes[i] == '101') || (notes[i] == null))) {
-            noteLengthArray[i] = '8n';
-            let holds = 0;
-            let j = 1;
-            while(i+j < notes.length) {             
-                if(notes[i+j] == '101') {
-                    holds++;
-                    j++;
-                } else {
-                    break;
-                }
-            }
-    
-            if(holds > 0) {
-                if(holds === 1) {
-                    noteLengthArray[i] = '4n';
-                } else if(holds > 3) {
-                    noteLengthArray[i] = '1n';
-                } else {
-                    noteLengthArray[i] = '2n';
-                }
-            }     
-        }  
-    }
-    noteLengthArray[-1] = '8n';
-    for(let i: number = 0; i < 10; i++) {
-        noteLengthArray.push('8n');
-    }
+    notes.forEach((note: (string | null)) => {
+        if(note == '101') {
+            noteLengthArray[noteLengthArray.length - 1] = '4n';
+        } else if (note != '100') {
+            noteLengthArray.push('8n');
+        }
+    });
     return noteLengthArray;
 }
