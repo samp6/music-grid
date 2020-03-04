@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button } from 'primereact/button';
+import { Row, Col, Container } from 'react-bootstrap';
 import { getNoteNameFromNumber } from './NoteUtil';
 
 export const Note = ({index, value, setNote, holdDisabled}) => {
@@ -36,12 +37,22 @@ export const Note = ({index, value, setNote, holdDisabled}) => {
 
 
     return (        
-        <div>
-            <Button label='+' onClick={clickHandlerPlus}/>
-            {getNoteNameFromNumber(value)}
-            <Button label='-' onClick={clickHandlerMinus}/>
-            {holdButton}
-            <Button label='r' onClick={clickHandlerRest}/>           
-        </div>
+        <Container>
+            <Row>
+                <Col>
+                    <Button label='+' onClick={clickHandlerPlus}/>
+                </Col>
+                <Col>
+                    {getNoteNameFromNumber(value)}
+                </Col>
+                <Col>
+                    <Button label='-' onClick={clickHandlerMinus}/>
+                </Col>
+            </Row>
+            <Row>
+                {holdButton}
+                <Button label='r' onClick={clickHandlerRest}/>
+            </Row>
+        </Container>
     );
 }

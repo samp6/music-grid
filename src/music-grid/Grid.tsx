@@ -4,6 +4,7 @@ import { RandomizeButton } from './RandomizeButton';
 
 import { Note } from './Note'
 import { PlayManager } from './PlayManager';
+import { Row, Container } from 'react-bootstrap';
 
 interface GridProps { 
 
@@ -65,8 +66,12 @@ export const Grid: React.FC<GridProps> = () => {
             <div className="p-grid">
                 {cols}
             </div>
-            <PlayManager notes={noteArray}/>
-            <RandomizeButton setNoteArray={setNoteArray}/>
+            <Container className="p-grid">
+                <Row>
+                    <PlayManager notes={noteArray}/>
+                    <RandomizeButton setNoteArray={setNoteArray}/>
+                </Row>
+            </Container>            
         </div>    
     );
 }
