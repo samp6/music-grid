@@ -23,12 +23,29 @@ export const Grid: React.FC<GridProps> = () => {
     }
 
     let boxes: JSX.Element[] = [];
+    let notes: JSX.Element[] = [];
+    let playedNote = false;
     for(let index = 0; index < 16; index++) {
-        const noteProps = {index, value: noteArray[index], setNote};
+        let holdDisabled = false;
+        if(noteArray[index] >= 0 && noteArray[index] <= 11) {
+            playedNote = true;
+        }
+        if(!playedNote) {
+            holdDisabled = true;
+        }
+        if(index === 0) {
+            holdDisabled = true;
+        } else {
+            if(noteArray[index-1] === 101 || noteArray[index-1] === 100) {
+                holdDisabled = true;
+            }
+        }
+        const noteProps = {index, value: noteArray[index], setNote, holdDisabled};
         const note = Note(noteProps);
+        notes.push(note);
         boxes.push(
             <div className='box'>
-                {note}
+                {notes[index]}
             </div>
         )
     }
